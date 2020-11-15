@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, InputHTMLAttributes } from 'react';
+import React, { useCallback, ChangeEvent, FC, InputHTMLAttributes } from 'react';
 
 import cx from 'classnames';
 import { createUseStyles } from 'react-jss';
@@ -44,11 +44,11 @@ const BaseInput: FC<BaseInputProps> = (props) => {
   const { onChange, className, ...inputProps } = props;
   const classes = useStyles(props);
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     if (onChange) {
       onChange(event.target.value);
     }
-  };
+  }, []);
 
   return <input {...inputProps} className={cx(classes.root, className)} onChange={handleChange} />;
 };

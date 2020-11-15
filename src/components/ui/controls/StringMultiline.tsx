@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, ReactText, TextareaHTMLAttributes } from 'react';
+import React, { useCallback, useRef, ChangeEvent, FC, ReactText, TextareaHTMLAttributes } from 'react';
 
 import cx from 'classnames';
 import { createUseStyles } from 'react-jss';
@@ -25,6 +25,8 @@ const useStyles = createUseStyles((theme: Theme) => ({
     'fontSize': theme.fonts.controls.normal.fontSize,
     'lineHeight': `${theme.fonts.controls.normal.lineHeight}px`,
     'transition': 'border-color 0.3s',
+    'overflow': 'hidden',
+    'resize': 'none',
     '&::placeholder': {
       color: theme.colors.textSecondary.normal,
     },
@@ -42,16 +44,30 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 const StringMultiline: FC<StringMultilineProps> = (props) => {
-  const { onChange, className, ...textAreaProps } = props;
+  const areaRef = useRef<HTMLTextAreaElement | null>(null);
+
+  const { onChange, className, value, ...textAreaProps } = props;
   const classes = useStyles(props);
 
-  const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    if (onChange) {
-      onChange(event.target.value);
-    }
-  };
+  const handleChange = useCallback(
+    (event: ChangeEvent<HTMLTextAreaElement>) => {
+      if (onChange) {
+        onChange(event.target.value);
+      }
+    },
+    [onChange]
+  );
 
-  return <textarea {...textAreaProps} className={cx(classes.root, className)} onChange={handleChange} />;
+  React.useLayoutEffect(() => {
+    const area = areaRef.current;
+    if (area) {
+      area.style.cssText = 'height: auto';
+      area.style.cssText = `height: ${Math.max(area.offsetHeight, area.scrollHeight)}px`;
+      area.scrollTop = area.scrollHeight;
+    }
+  }, [value]);
+
+  return <textarea {...textAreaProps} ref={areaRef} className={cx(classes.root, className)} value={value} onChange={handleChange} />;
 };
 
 export default StringMultiline;

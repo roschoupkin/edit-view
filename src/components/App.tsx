@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo, useState } from 'react';
 
 import { createUseStyles } from 'react-jss';
 
@@ -33,13 +33,19 @@ const useStyles = createUseStyles({
 
 const App = () => {
   const classes = useStyles();
-  const buttons = BUTTON_MODES.map((mode) => {
-    return BUTTON_COLORS.map((color) => (
-      <Button key={`${mode} ${color}`} mode={mode} color={color}>
-        {`${mode} ${color}`}
-      </Button>
-    ));
-  });
+  const [area, setArea] = useState('');
+
+  const buttons = useMemo(
+    () =>
+      BUTTON_MODES.map((mode) => {
+        return BUTTON_COLORS.map((color) => (
+          <Button key={`${mode} ${color}`} mode={mode} color={color}>
+            {`${mode} ${color}`}
+          </Button>
+        ));
+      }),
+    []
+  );
 
   return (
     <div className={classes.root}>
@@ -49,8 +55,8 @@ const App = () => {
       <Integer />
       <div>Buttons:</div>
       <div className={classes.buttons}>{buttons}</div>
-      <div>TextArea:</div>
-      <StringMultiline />
+      <div>String multiline:</div>
+      <StringMultiline value={area} onChange={setArea} />
     </div>
   );
 };
