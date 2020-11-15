@@ -6,6 +6,7 @@ import Button, { ButtonProps } from '@ui/controls/Button';
 import Float from '@ui/controls/Float';
 import Integer from '@ui/controls/Integer';
 import String from '@ui/controls/String';
+import StringMultiline from '@ui/controls/StringMultiline';
 
 const BUTTON_MODES: ButtonProps['mode'][] = ['contained', 'outlined', 'text'];
 const BUTTON_COLORS: ButtonProps['color'][] = ['primary', 'secondary', 'error', 'warning'];
@@ -48,6 +49,8 @@ const App = () => {
       <Integer />
       <div>Buttons:</div>
       <div className={classes.buttons}>{buttons}</div>
+      <div>TextArea:</div>
+      <StringMultiline />
     </div>
   );
 };

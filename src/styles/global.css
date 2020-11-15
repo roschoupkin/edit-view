@@ -13,7 +13,7 @@ body {
   box-sizing: border-box;
 }
 
-input {
+input, textarea {
   position: relative;
   display: block;
 

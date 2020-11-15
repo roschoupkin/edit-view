@@ -1,21 +1,22 @@
-import React, { ChangeEvent, FC, InputHTMLAttributes } from 'react';
+import React, { ChangeEvent, FC, ReactText, TextareaHTMLAttributes } from 'react';
 
 import cx from 'classnames';
 import { createUseStyles } from 'react-jss';
 
 import { Theme } from '@styles/types';
 
-export type HtmlInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange'>;
+export type HtmlTextAreaProps = Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'value' | 'onChange'>;
 
-export interface BaseInputProps extends HtmlInputProps {
+export interface StringMultilineProps extends HtmlTextAreaProps {
   value?: string;
   onChange?(value: string): void;
+  width?: ReactText;
 }
 
 const useStyles = createUseStyles((theme: Theme) => ({
   root: {
     'display': 'block',
-    'width': ({ width }: BaseInputProps) => width ?? '100%',
+    'width': ({ width }: StringMultilineProps) => width ?? '100%',
     'height': theme.controls.height,
     'backgroundColor': theme.colorBg,
     'borderRadius': theme.controls.borderRadius,
@@ -40,17 +41,17 @@ const useStyles = createUseStyles((theme: Theme) => ({
   },
 }));
 
-const BaseInput: FC<BaseInputProps> = (props) => {
-  const { onChange, className, ...inputProps } = props;
+const StringMultiline: FC<StringMultilineProps> = (props) => {
+  const { onChange, className, ...textAreaProps } = props;
   const classes = useStyles(props);
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     if (onChange) {
       onChange(event.target.value);
     }
   };
 
-  return <input {...inputProps} className={cx(classes.root, className)} onChange={handleChange} />;
+  return <textarea {...textAreaProps} className={cx(classes.root, className)} onChange={handleChange} />;
 };
 
-export default BaseInput;
+export default StringMultiline;
