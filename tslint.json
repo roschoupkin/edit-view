@@ -8,10 +8,7 @@
     "jsx-no-multiline-js": false,
     "member-access": [true, "no-public"],
     "no-implicit-dependencies": false,
-    "no-submodule-imports": [
-      true,
-      "core-js"
-    ],
+    "no-submodule-imports": false,
     "ordered-imports": [
       true,
       {
@@ -29,12 +26,12 @@
           },
           {
             "name": "External module",
-            "match": "^@?[a-zA-Z]+",
+            "match": "^[a-zA-Z]+",
             "order": 20
           },
           {
             "name": "Internal module",
-            "match": "^\\.",
+            "match": "^@[a-zA-Z]+",
             "order": 30
           }
         ],
