@@ -1,24 +1,24 @@
-import React, { ChangeEvent, FC, InputHTMLAttributes } from 'react';
+import React, { useMemo, FC } from 'react';
 
-const FLOAT_REGEX = /^[+-]?\d+(\.\d+)?$/; // TODO: Add fraction to component
+import BaseInput, { HtmlInputProps } from '@ui/BaseInput';
 
-type BaseInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'type' | 'value'>;
-
-export interface FloatProps extends BaseInputProps {
+export interface FloatProps extends HtmlInputProps {
   type?: 'number';
   value?: number;
+  fraction?: number;
   onChange?(value: number): void;
 }
 
-const Float: FC<FloatProps> = ({ type, onChange, ...props }) => {
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target;
-    if (onChange && FLOAT_REGEX.test(value)) {
+const Float: FC<FloatProps> = ({ type, fraction, value: valueProp, onChange, ...props }) => {
+  const regex = useMemo(() => new RegExp(`^[+-]?\\d+(\\.\\d${fraction ?? '+'})?$`), [fraction]);
+
+  const handleChange = (value: string) => {
+    if (onChange && regex.test(value)) {
       onChange(parseFloat(value));
     }
   };
 
-  return <input {...props} type='number' onChange={handleChange} />;
+  return <BaseInput {...props} type='number' value={valueProp?.toString()} onChange={handleChange} />;
 };
 
 export default Float;

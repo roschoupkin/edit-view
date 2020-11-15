@@ -2,12 +2,12 @@ import React from 'react';
 
 import Button from '@ui/controls/Button';
 import Float from '@ui/controls/Float';
-import Input from '@ui/controls/Input';
 import Integer from '@ui/controls/Integer';
+import String from '@ui/controls/String';
 
 const App = () => (
   <div>
-    <Input />
+    <String />
     <Float />
     <Button />
     <Integer />
