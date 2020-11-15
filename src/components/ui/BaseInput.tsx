@@ -20,7 +20,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
     'borderRadius': theme.controls.borderRadius,
     'padding': theme.controls.padding,
     'border': `${theme.controls.sizeBorderWidth}px solid ${theme.colors.border.normal}`,
+    'fontSize': theme.fonts.controls.normal.fontSize,
+    'lineHeight': `${theme.fonts.controls.normal.lineHeight}px`,
     'transition': 'border-color 0.3s',
+    '&:placeholder': {
+      color: theme.colors.textSecondary.normal,
+    },
     '&:disabled': {
       borderColor: theme.colors.border.disabled,
     },

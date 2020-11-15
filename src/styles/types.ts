@@ -9,7 +9,7 @@ export interface ThemeControls {
 
 export interface ThemeFont {
   fontSize: number;
-  lineHeight?: Property.LineHeight;
+  lineHeight: Property.LineHeight;
   fontWeight?: Property.FontWeight;
   fontFamily?: Property.FontFamily;
   letterSpacing?: Property.LetterSpacing;
@@ -28,10 +28,10 @@ export interface ThemeFonts {
 
 export interface ThemeColor {
   normal: string;
-  hover?: string;
-  focus?: string;
-  active?: string;
-  disabled?: string;
+  hover: string;
+  focus: string;
+  active: string;
+  disabled: string;
 }
 
 export interface ThemeColors {
