@@ -30,11 +30,12 @@ const useStyles = createUseStyles((theme: Theme) => ({
     '&:disabled': {
       backgroundColor: theme.colorBgSecondary,
       borderColor: theme.colors.border.disabled,
+      cursor: 'default',
     },
     '&:focus': {
       borderColor: theme.colors.border.focus,
     },
-    '&:hover': {
+    '&:hover:not(:disabled)': {
       borderColor: theme.colors.border.hover,
     },
   },

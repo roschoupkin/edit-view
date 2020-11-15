@@ -22,25 +22,29 @@ const useStyles = createUseStyles((theme: Theme) => {
 
   return {
     root: {
-      display: 'block',
-      width: ({ width }: ButtonProps) => width ?? '100%',
-      height: theme.controls.height,
-      borderRadius: theme.controls.borderRadius,
-      fontSize: theme.fonts.controls.normal.fontSize,
-      lineHeight: `${theme.fonts.controls.normal.lineHeight}px`,
+      'display': 'block',
+      'width': ({ width }: ButtonProps) => width ?? '100%',
+      'height': theme.controls.height,
+      'borderRadius': theme.controls.borderRadius,
+      'fontSize': theme.fonts.controls.normal.fontSize,
+      'lineHeight': `${theme.fonts.controls.normal.lineHeight}px`,
+      '&:disabled': {
+        cursor: 'default',
+      },
     },
     contained: {
       'color': getContainedTextColor('normal'),
       'backgroundColor': getColor('normal'),
+      'transition': 'color, background-color 0.3s',
       '&:disabled': {
         color: getContainedTextColor('disabled'),
         backgroundColor: getColor('disabled'),
       },
-      '&:focus': {
+      '&:focus:not(:disabled)': {
         color: getContainedTextColor('focus'),
         backgroundColor: getColor('focus'),
       },
-      '&:hover': {
+      '&:hover:not(:disabled)': {
         color: getContainedTextColor('hover'),
         backgroundColor: getColor('hover'),
       },
@@ -50,28 +54,30 @@ const useStyles = createUseStyles((theme: Theme) => {
       'borderColor': getColor('normal'),
       'borderWidth': theme.controls.sizeBorderWidth,
       'borderStyle': 'solid',
+      'transition': 'color, border-color 0.3s',
       '&:disabled': {
         color: getColor('disabled'),
         borderColor: getColor('disabled'),
       },
-      '&:focus': {
+      '&:focus:not(:disabled)': {
         color: getColor('focus'),
         borderColor: getColor('focus'),
       },
-      '&:hover': {
+      '&:hover:not(:disabled)': {
         color: getColor('hover'),
         borderColor: getColor('hover'),
       },
     },
     text: {
       'color': getColor('normal'),
+      'transition': 'color 0.3s',
       '&:disabled': {
         color: getColor('disabled'),
       },
-      '&:focus': {
+      '&:focus:not(:disabled)': {
         color: getColor('focus'),
       },
-      '&:hover': {
+      '&:hover:not(:disabled)': {
         color: getColor('hover'),
       },
     },

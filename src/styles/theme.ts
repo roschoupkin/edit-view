@@ -12,7 +12,7 @@ export const mixColor = (colorBase: Property.Color, colorState: Property.Color, 
   color(colorBase).mix(color(colorState), opacity).hex();
 
 export const tonerHover = (colorBase: Property.Color) => mixColor(colorBase, '#000000', 0.04);
-export const tonerDisabled = (colorBase: Property.Color) => mixColor(colorBase, '#FFFFFF', 0.04);
+export const tonerDisabled = (colorBase: Property.Color) => mixColor(colorBase, '#FFFFFF', 0.48);
 export const tonerFocus = (colorBase: Property.Color) => mixColor(colorBase, '#000000', 0.08);
 
 export const baseTheme: Theme = {
