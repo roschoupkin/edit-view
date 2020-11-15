@@ -1,0 +1,6 @@
+{
+    "*.{ts,tsx}": [
+        "prettier --write",
+        "tslint --format stylish --project tsconfig.json --fix",
+    ]
+}

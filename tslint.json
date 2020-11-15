@@ -1,0 +1,52 @@
+{
+  "extends": ["tslint:latest", "tslint-config-prettier", "tslint-react", "tslint-react-hooks"],
+  "rules": {
+    "semicolon": true,
+    "quotemark": [true, "single"],
+    "interface-name": true,
+    "interface-over-type-literal": false,
+    "jsx-boolean-value": false,
+    "jsx-no-multiline-js": false,
+    "member-access": [true, "no-public"],
+    "no-implicit-dependencies": false,
+    "no-submodule-imports": [
+      true,
+      "core-js"
+    ],
+    "ordered-imports": [
+      true,
+      {
+        "grouped-imports": true,
+        "groups": [
+          {
+            "name": "Polyfills",
+            "match": "core-js",
+            "order": 0
+          },
+          {
+            "name": "React",
+            "match": "react(/debug)?$",
+            "order": 10
+          },
+          {
+            "name": "External module",
+            "match": "^@?[a-zA-Z]+",
+            "order": 20
+          },
+          {
+            "name": "Internal module",
+            "match": "^\\.",
+            "order": 30
+          }
+        ],
+        "import-sources-order": "lowercase-first",
+        "named-imports-order": "lowercase-first"
+      }
+    ],
+    "prefer-for-of": false,
+    "switch-default": true,
+    "variable-name": {
+      "options": ["allow-pascal-case", "allow-snake-case"]
+    }
+  }
+}

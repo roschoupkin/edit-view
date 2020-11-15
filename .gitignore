@@ -1,0 +1,17 @@
+# Dependency directories
+node_modules/
+
+# IDE / OS files
+*.sublime-project
+*.sublime-workspace
+.idea
+.vscode
+.DS_Store
+
+# Logs
+.awcache
+npm-debug.log*
+yarn-error.log*
+
+# Build directories
+dist/

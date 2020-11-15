@@ -1,0 +1,46 @@
+html,
+body {
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+}
+
+#root * {
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  box-sizing: border-box;
+}
+
+input {
+  position: relative;
+  display: block;
+
+  margin: 0;
+  padding: 0;
+
+  border: none;
+  background-color: transparent;
+
+  outline: none;
+}
+
+input[disabled],
+textarea[disabled] {
+  opacity: 1;
+}
+
+button {
+  position: relative;
+  display: inline-block;
+
+  margin: 0;
+  padding: 0;
+
+  border: none;
+  background-color: transparent;
+
+  outline: none;
+  cursor: pointer;
+}
