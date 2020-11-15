@@ -1,5 +1,6 @@
 import React, { ChangeEvent, FC, InputHTMLAttributes } from 'react';
 
+import cx from 'classnames';
 import { createUseStyles } from 'react-jss';
 
 import { Theme } from '@styles/types';
@@ -33,7 +34,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
 }));
 
 const BaseInput: FC<BaseInputProps> = (props) => {
-  const { onChange, ...inputProps } = props;
+  const { onChange, className, ...inputProps } = props;
   const classes = useStyles(props);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -42,7 +43,7 @@ const BaseInput: FC<BaseInputProps> = (props) => {
     }
   };
 
-  return <input {...inputProps} className={classes.root} onChange={handleChange} />;
+  return <input {...inputProps} className={cx(classes.root, className)} onChange={handleChange} />;
 };
 
 export default BaseInput;
