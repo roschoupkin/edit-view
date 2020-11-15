@@ -18,4 +18,4 @@ const Input: FC<InputProps> = ({ type, onChange, ...props }) => {
   return <input {...props} type={type} onChange={handleChange} />;
 };
 
-export default Input;
+export default Input; // TODO: Convert it to BaseInput

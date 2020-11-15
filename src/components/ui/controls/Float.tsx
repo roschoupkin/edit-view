@@ -1,6 +1,6 @@
 import React, { ChangeEvent, FC, InputHTMLAttributes } from 'react';
 
-const FLOAT_REGEX = /^[+-]?\d+(\.\d+)?$/;
+const FLOAT_REGEX = /^[+-]?\d+(\.\d+)?$/; // TODO: Add fraction to component
 
 type BaseInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'type' | 'value'>;
 
