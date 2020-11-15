@@ -23,7 +23,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     'fontSize': theme.fonts.controls.normal.fontSize,
     'lineHeight': `${theme.fonts.controls.normal.lineHeight}px`,
     'transition': 'border-color 0.3s',
-    '&:placeholder': {
+    '&::placeholder': {
       color: theme.colors.textSecondary.normal,
     },
     '&:disabled': {

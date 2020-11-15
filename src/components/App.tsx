@@ -42,7 +42,6 @@ const App = () => {
 
   return (
     <div className={classes.root}>
-      <div>Hello world!</div>
       <div>Inputs:</div>
       <String />
       <Float />
