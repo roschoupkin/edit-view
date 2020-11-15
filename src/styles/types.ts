@@ -4,6 +4,7 @@ export interface ThemeControls {
   height: number;
   padding: number[];
   borderRadius: number;
+  sizeBorderWidth: number;
 }
 
 export interface ThemeFont {
@@ -26,11 +27,11 @@ export interface ThemeFonts {
 }
 
 export interface ThemeColor {
-  normal: Property.Color;
-  hover?: Property.Color;
-  focus?: Property.Color;
-  active?: Property.Color;
-  disabled?: Property.Color;
+  normal: string;
+  hover?: string;
+  focus?: string;
+  active?: string;
+  disabled?: string;
 }
 
 export interface ThemeColors {
@@ -39,7 +40,7 @@ export interface ThemeColors {
   warning: ThemeColor;
   error: ThemeColor;
   success: ThemeColor;
-  border: ThemeColor;
+  border: Required<ThemeColor>;
   text: ThemeColor;
   textSecondary: ThemeColor;
   textContrast: ThemeColor;

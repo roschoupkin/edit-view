@@ -22,6 +22,7 @@ export const baseTheme: Theme = {
     height: 40,
     padding: [10, 12],
     borderRadius: 4,
+    sizeBorderWidth: 1,
   },
   fonts: {
     controls: {
