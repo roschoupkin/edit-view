@@ -4,6 +4,7 @@ import { createUseStyles } from 'react-jss';
 
 import Button, { ButtonProps } from '@ui/controls/Button';
 import { Float, Integer } from '@ui/controls/Number';
+import Select from '@ui/controls/Select';
 import { String, StringMultiline } from '@ui/controls/String';
 
 const BUTTON_MODES: ButtonProps['mode'][] = ['contained', 'outlined', 'text'];
@@ -55,6 +56,8 @@ const App = () => {
       <div className={classes.buttons}>{buttons}</div>
       <div>String multiline:</div>
       <StringMultiline value={area} onChange={setArea} />
+      <div>Select:</div>
+      <Select />
     </div>
   );
 };
