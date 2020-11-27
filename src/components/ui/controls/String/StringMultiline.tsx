@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, ChangeEvent, FC, ReactText, TextareaHTMLAttributes } from 'react';
+import React, { useCallback, useLayoutEffect, useRef, ChangeEvent, FC, ReactText, TextareaHTMLAttributes } from 'react';
 
 import cx from 'classnames';
 import { createUseStyles } from 'react-jss';
@@ -59,7 +59,7 @@ const StringMultiline: FC<StringMultilineProps> = (props) => {
     [onChange]
   );
 
-  React.useLayoutEffect(() => {
+  useLayoutEffect(() => {
     const area = areaRef.current;
     if (area) {
       area.style.cssText = 'height: auto';

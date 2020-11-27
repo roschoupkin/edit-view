@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, FC } from 'react';
+import React, { useCallback, useEffect, useRef, useState, FC, ReactNode } from 'react';
 
 import { createUseStyles } from 'react-jss';
 
@@ -7,7 +7,7 @@ import { handleEvent } from '@utils/events';
 import Overlay, { OverlayProps } from './Overlay';
 
 interface DropdownProps extends OverlayProps {
-  overlay: React.ReactNode;
+  overlay: ReactNode;
   onClickInside?(): void;
   onClickOutside?(): void;
 }
@@ -21,10 +21,10 @@ const useStyles = createUseStyles({
 const Dropdown: FC<DropdownProps> = ({ children, overlay, open, onClickInside, onClickOutside, ...overlayProps }) => {
   const classes = useStyles();
 
-  const elementRef = React.useRef<HTMLSpanElement>(null);
-  const containerRef = React.useRef<HTMLDivElement>(null);
+  const elementRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleDocumentClick = useCallback(
     (e: MouseEvent) => {
@@ -56,7 +56,7 @@ const Dropdown: FC<DropdownProps> = ({ children, overlay, open, onClickInside, o
 
   return (
     <div className={classes.root} ref={containerRef}>
-      <span ref={elementRef}>{children}</span>
+      <div ref={elementRef}>{children}</div>
       <Overlay open={open || isOpen} {...overlayProps}>
         {overlay}
       </Overlay>
