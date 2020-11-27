@@ -1,5 +1,13 @@
 import React, { FC } from 'react';
 
-const Select: FC = () => <div />;
+import Dropdown from '@ui/Dropdown';
+import Overlay from '@ui/Overlay';
+
+const Select: FC = () => (
+  <div>
+    <Dropdown />
+    <Overlay />
+  </div>
+);
 
 export default Select;
