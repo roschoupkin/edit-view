@@ -22,7 +22,7 @@ interface OverlayStylesProp {
   offset: number;
 }
 
-interface OverlayProps extends Partial<OverlayStylesProp> {
+export interface OverlayProps extends Partial<OverlayStylesProp> {
   placement?: Placement;
   open?: boolean;
 }
@@ -57,7 +57,7 @@ const useStyles = createUseStyles((theme: Theme) => {
   };
 
   return {
-    overlay: {
+    root: {
       'position': 'absolute',
       'display': 'block',
       'borderRadius': 2,
@@ -179,7 +179,7 @@ const Overlay: FC<OverlayProps> = ({ placement = 'bottom', offset = 0, children,
   if (!open) {
     return null;
   }
-  return <div className={cx(classes.overlay, classes[placement])}>{children}</div>;
+  return <div className={cx(classes.root, classes[placement])}>{children}</div>;
 };
 
 export default Overlay;
