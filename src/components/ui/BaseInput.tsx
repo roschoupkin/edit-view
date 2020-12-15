@@ -23,7 +23,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     'border': `${theme.controls.borderWidth}px solid ${theme.colors.border.normal}`,
     'fontSize': theme.fonts.controls.normal.fontSize,
     'lineHeight': `${theme.fonts.controls.normal.lineHeight}px`,
-    'transition': 'border-color 0.3s',
+    'transition': `border-color ${theme.transitionDuration}`,
     '&::placeholder': {
       color: theme.colors.textSecondary.normal,
     },

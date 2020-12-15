@@ -30,7 +30,7 @@ const App = () => {
       <Integer placeholder='Целые числа' />
       <div>Select:</div>
       <Select options={BUTTON_MODES} placeholder='Вариант отображения кнопки' value={mode} onChange={setMode} />
-      <Select options={BUTTON_COLORS} placeholder='Цвет отображения кнопки' value={color} onChange={setColor} />
+      <Select placement='top' options={BUTTON_COLORS} placeholder='Цвет отображения кнопки' value={color} onChange={setColor} />
       <div>Buttons:</div>
       <div>
         <Button color={color as ButtonProps['color']} mode={mode as ButtonProps['mode']}>

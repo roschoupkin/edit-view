@@ -1,10 +1,10 @@
 import { Property } from 'csstype';
 
 export interface ThemeControls {
-  height: number;
+  height: Property.Height<number>;
   padding: number[];
-  borderRadius: number;
-  borderWidth: number;
+  borderRadius: Property.BorderRadius<number>;
+  borderWidth: Property.BorderWidth<number>;
 }
 
 export interface ThemeFont {
@@ -14,8 +14,8 @@ export interface ThemeFont {
   fontFamily?: Property.FontFamily;
   letterSpacing?: Property.LetterSpacing;
   textTransform?: Property.TextTransform;
-  marginTop?: number;
-  marginBottom?: number;
+  marginTop?: Property.MarginTop;
+  marginBottom?: Property.MarginBottom;
 }
 
 export interface ThemeFonts {
@@ -27,11 +27,11 @@ export interface ThemeFonts {
 }
 
 export interface ThemeColor {
-  normal: string;
-  hover: string;
-  focus: string;
-  active: string;
-  disabled: string;
+  normal: Property.Color;
+  hover: Property.Color;
+  focus: Property.Color;
+  active: Property.Color;
+  disabled: Property.Color;
 }
 
 export interface ThemeColors {
@@ -63,10 +63,11 @@ export interface Theme {
   colorBg: Property.Color;
   colorBgPopup: Property.Color;
   colorBgSecondary: Property.Color;
-  borderRadius: number;
-  offset: number;
   controls: ThemeControls;
   fonts: ThemeFonts;
   colors: ThemeColors;
   boxShadows: ThemeBoxShadows;
+  transitionDuration: Property.TransitionDuration;
+  borderRadius: Property.BorderRadius<number>;
+  offset: number;
 }

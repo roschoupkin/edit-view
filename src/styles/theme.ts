@@ -21,6 +21,7 @@ export const baseTheme: Theme = {
   colorBg: '#FFFFFF',
   colorBgPopup: '#FFFFFF',
   colorBgSecondary: '#F0F0F0',
+  transitionDuration: '0.3s',
   borderRadius: 12,
   offset: 4,
   boxShadows: {

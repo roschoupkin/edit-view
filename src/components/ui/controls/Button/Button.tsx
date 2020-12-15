@@ -35,7 +35,7 @@ const useStyles = createUseStyles((theme: Theme) => {
     contained: {
       'color': getContainedTextColor('normal'),
       'backgroundColor': getColor('normal'),
-      'transition': 'color, background-color 0.3s',
+      'transition': `color, background-color ${theme.transitionDuration}`,
       '&:disabled': {
         color: getContainedTextColor('disabled'),
         backgroundColor: getColor('disabled'),
@@ -54,7 +54,7 @@ const useStyles = createUseStyles((theme: Theme) => {
       'borderColor': getColor('normal'),
       'borderWidth': theme.controls.borderWidth,
       'borderStyle': 'solid',
-      'transition': 'color, border-color 0.3s',
+      'transition': `color, border-color ${theme.transitionDuration}`,
       '&:disabled': {
         color: getColor('disabled'),
         borderColor: getColor('disabled'),
@@ -70,7 +70,7 @@ const useStyles = createUseStyles((theme: Theme) => {
     },
     text: {
       'color': getColor('normal'),
-      'transition': 'color 0.3s',
+      'transition': `color ${theme.transitionDuration}`,
       '&:disabled': {
         color: getColor('disabled'),
       },
