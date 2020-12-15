@@ -1,11 +1,11 @@
-import React, { useMemo, useState } from 'react';
+import React, { useState } from 'react';
 
 import { createUseStyles } from 'react-jss';
 
 import { Button, ButtonProps, Float, Integer, Select, String, StringMultiline } from '@ui/controls';
 
-const BUTTON_MODES: ButtonProps['mode'][] = ['contained', 'outlined', 'text'];
-const BUTTON_COLORS: ButtonProps['color'][] = ['primary', 'secondary', 'error', 'warning'];
+const BUTTON_MODES = ['contained', 'outlined', 'text'];
+const BUTTON_COLORS = ['primary', 'secondary', 'error', 'warning'];
 
 const useStyles = createUseStyles({
   root: {
@@ -14,48 +14,31 @@ const useStyles = createUseStyles({
       marginBottom: 20,
     },
   },
-  buttons: {
-    'display': 'flex',
-    'flexFlow': 'row wrap',
-    'justifyContent': 'flex-start',
-    'alignItems': 'center',
-    '& > *': {
-      width: 300,
-      marginRight: 20,
-      marginBottom: 20,
-    },
-  },
 });
 
 const App = () => {
   const classes = useStyles();
   const [area, setArea] = useState('');
-  const [select, setSelect] = useState('');
-
-  const buttons = useMemo(
-    () =>
-      BUTTON_MODES.map((mode) => {
-        return BUTTON_COLORS.map((color) => (
-          <Button key={`${mode} ${color}`} mode={mode} color={color}>
-            {`${mode} ${color}`}
-          </Button>
-        ));
-      }),
-    []
-  );
+  const [mode, setMode] = useState<string | undefined>(undefined);
+  const [color, setColor] = useState<string | undefined>(undefined);
 
   return (
     <div className={classes.root}>
       <div>Inputs:</div>
-      <String />
-      <Float />
-      <Integer />
-      <div>Buttons:</div>
-      <div className={classes.buttons}>{buttons}</div>
-      <div>String multiline:</div>
-      <StringMultiline value={area} onChange={setArea} />
+      <String placeholder='Строка' />
+      <Float placeholder='Дрбные числа' />
+      <Integer placeholder='Целые числа' />
       <div>Select:</div>
-      <Select options={BUTTON_COLORS as string[]} value={select} onChange={setSelect} />
+      <Select options={BUTTON_MODES} placeholder='Вариант отображения кнопки' value={mode} onChange={setMode} />
+      <Select options={BUTTON_COLORS} placeholder='Цвет отображения кнопки' value={color} onChange={setColor} />
+      <div>Buttons:</div>
+      <div>
+        <Button color={color as ButtonProps['color']} mode={mode as ButtonProps['mode']}>
+          Button test
+        </Button>
+      </div>
+      <div>String multiline:</div>
+      <StringMultiline value={area} placeholder='Ввод длинного текста' onChange={setArea} />
     </div>
   );
 };
