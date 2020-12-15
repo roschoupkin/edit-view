@@ -2,13 +2,13 @@ import React, { useCallback, useState, FC } from 'react';
 
 import { createUseStyles } from 'react-jss';
 
-import { String } from '@ui/controls';
+import { Options, OptionsProps, String } from '@ui/controls';
 import Dropdown from '@ui/Dropdown';
 import { Placement } from '@ui/Overlay';
 
 import { ControlProps } from '../types';
 
-export interface SelectProps extends ControlProps {
+export interface SelectProps extends ControlProps, OptionsProps {
   placement?: Placement;
   placeholder?: string;
 }
@@ -19,7 +19,7 @@ const useStyles = createUseStyles({
   },
 });
 
-const Select: FC<SelectProps> = ({ placement, ...props }) => {
+const Select: FC<SelectProps> = ({ options, placement, ...props }) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
 
@@ -27,7 +27,7 @@ const Select: FC<SelectProps> = ({ placement, ...props }) => {
   const handleClose = useCallback(() => setOpen(false), []);
 
   return (
-    <Dropdown open={open} placement={placement} onClickOutside={handleClose} overlay={<div>asdkljakljsdkljaskldjaskldjsajlslakdjlkj</div>}>
+    <Dropdown open={open} placement={placement} onClickOutside={handleClose} overlay={<Options options={options} />}>
       <String {...props} className={classes.root} readOnly onClick={handleOpen} />
     </Dropdown>
   );
