@@ -52,7 +52,7 @@ const useStyles = createUseStyles((theme: Theme) => {
     outlined: {
       'color': getColor('normal'),
       'borderColor': getColor('normal'),
-      'borderWidth': theme.controls.sizeBorderWidth,
+      'borderWidth': theme.controls.borderWidth,
       'borderStyle': 'solid',
       'transition': 'color, border-color 0.3s',
       '&:disabled': {

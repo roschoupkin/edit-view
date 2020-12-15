@@ -4,7 +4,7 @@ export interface ThemeControls {
   height: number;
   padding: number[];
   borderRadius: number;
-  sizeBorderWidth: number;
+  borderWidth: number;
 }
 
 export interface ThemeFont {
@@ -46,10 +46,26 @@ export interface ThemeColors {
   textContrast: ThemeColor;
 }
 
+export interface ThemeBoxShadow {
+  x: number;
+  y: number;
+  blur: number;
+  spread: number;
+  color: Property.Color;
+}
+
+export interface ThemeBoxShadows {
+  normal: ThemeBoxShadow;
+  active: ThemeBoxShadow;
+}
+
 export interface Theme {
   colorBg: Property.Color;
+  colorBgPopup: Property.Color;
   colorBgSecondary: Property.Color;
+  borderRadius: number;
   controls: ThemeControls;
   fonts: ThemeFonts;
   colors: ThemeColors;
+  boxShadows: ThemeBoxShadows;
 }

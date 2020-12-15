@@ -1,7 +1,7 @@
 import * as color from 'color';
 import { Property } from 'csstype';
 
-import { Theme } from './types';
+import { Theme, ThemeBoxShadow } from './types';
 
 export function important(value: string | number) {
   const postfix = typeof value === 'number' ? 'px' : '';
@@ -14,15 +14,35 @@ export const mixColor = (colorBase: Property.Color, colorState: Property.Color, 
 export const tonerHover = (colorBase: Property.Color) => mixColor(colorBase, '#000000', 0.04);
 export const tonerDisabled = (colorBase: Property.Color) => mixColor(colorBase, '#FFFFFF', 0.48);
 export const tonerFocus = (colorBase: Property.Color) => mixColor(colorBase, '#000000', 0.08);
+export const createBoxShadow = (shadow: ThemeBoxShadow) =>
+  `${shadow.x}px ${shadow.y}px ${shadow.blur}px ${shadow.spread}px ${shadow.color}`;
 
 export const baseTheme: Theme = {
   colorBg: '#FFFFFF',
+  colorBgPopup: '#FFFFFF',
   colorBgSecondary: '#F0F0F0',
+  borderRadius: 12,
+  boxShadows: {
+    normal: {
+      x: 0,
+      y: 4,
+      blur: 20,
+      spread: 0,
+      color: 'rgba(0, 16, 61, 0.12)',
+    },
+    active: {
+      x: 0,
+      y: 20,
+      blur: 80,
+      spread: 0,
+      color: 'rgba(0, 16, 61, 0.24)',
+    },
+  },
   controls: {
     height: 40,
     padding: [10, 12],
     borderRadius: 4,
-    sizeBorderWidth: 1,
+    borderWidth: 1,
   },
   fonts: {
     controls: {
