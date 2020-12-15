@@ -2,10 +2,7 @@ import React, { useMemo, useState } from 'react';
 
 import { createUseStyles } from 'react-jss';
 
-import Button, { ButtonProps } from '@ui/controls/Button';
-import { Float, Integer } from '@ui/controls/Number';
-import Select from '@ui/controls/Select';
-import { String, StringMultiline } from '@ui/controls/String';
+import { Button, ButtonProps, Float, Integer, Select, String, StringMultiline } from '@ui/controls';
 
 const BUTTON_MODES: ButtonProps['mode'][] = ['contained', 'outlined', 'text'];
 const BUTTON_COLORS: ButtonProps['color'][] = ['primary', 'secondary', 'error', 'warning'];

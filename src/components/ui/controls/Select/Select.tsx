@@ -1,50 +1,34 @@
-import React, { FC } from 'react';
+import React, { useCallback, useState, FC } from 'react';
 
 import { createUseStyles } from 'react-jss';
 
-import { Theme } from '@styles/types';
+import { String } from '@ui/controls';
 import Dropdown from '@ui/Dropdown';
+import { Placement } from '@ui/Overlay';
 
 import { ControlProps } from '../types';
 
-interface SelectProps extends ControlProps {
+export interface SelectProps extends ControlProps {
+  placement?: Placement;
   placeholder?: string;
 }
 
-const useStyles = createUseStyles((theme: Theme) => ({
+const useStyles = createUseStyles({
   root: {
-    'display': 'block',
-    'width': ({ width }: SelectProps) => width ?? '100%',
-    'height': theme.controls.height,
-    'backgroundColor': theme.colorBg,
-    'borderRadius': theme.controls.borderRadius,
-    'padding': theme.controls.padding,
-    'border': `${theme.controls.sizeBorderWidth}px solid ${theme.colors.border.normal}`,
-    'fontSize': theme.fonts.controls.normal.fontSize,
-    'lineHeight': `${theme.fonts.controls.normal.lineHeight}px`,
-    'transition': 'border-color 0.3s',
-    '&::placeholder': {
-      color: theme.colors.textSecondary.normal,
-    },
-    '&:hover:not($disabled)': {
-      borderColor: theme.colors.border.hover,
-    },
+    cursor: 'pointer',
   },
-  disabled: {
-    backgroundColor: theme.colorBgSecondary,
-    borderColor: theme.colors.border.disabled,
-    cursor: 'default',
-  },
-  focused: {
-    borderColor: theme.colors.border.focus,
-  },
-}));
+});
 
-const Select: FC<SelectProps> = (props) => {
-  const classes = useStyles(props);
+const Select: FC<SelectProps> = ({ placement, ...props }) => {
+  const classes = useStyles();
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = useCallback(() => setOpen(true), []);
+  const handleClose = useCallback(() => setOpen(false), []);
+
   return (
-    <Dropdown overlay={<div />}>
-      <div className={classes.root} />
+    <Dropdown open={open} placement={placement} onClickOutside={handleClose} overlay={<div>asdkljakljsdkljaskldjaskldjsajlslakdjlkj</div>}>
+      <String {...props} className={classes.root} readOnly onClick={handleOpen} />
     </Dropdown>
   );
 };

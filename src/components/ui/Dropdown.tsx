@@ -6,7 +6,7 @@ import { handleEvent } from '@utils/events';
 
 import Overlay, { OverlayProps } from './Overlay';
 
-interface DropdownProps extends OverlayProps {
+export interface DropdownProps extends OverlayProps {
   overlay: ReactNode;
   onClickInside?(): void;
   onClickOutside?(): void;
