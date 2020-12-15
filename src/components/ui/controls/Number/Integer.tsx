@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { useCallback, useEffect, useState, FC } from 'react';
 
 import BaseInput, { HtmlInputProps } from '../../BaseInput';
 
@@ -11,13 +11,21 @@ export interface IntegerProps extends HtmlInputProps {
 }
 
 const Integer: FC<IntegerProps> = ({ type, value: valueProp, onChange, ...props }) => {
-  const handleChange = (value: string) => {
-    if (onChange && INT_REGEX.test(value)) {
-      onChange(parseInt(value, 10));
-    }
-  };
+  const [integer, setInteger] = useState<number | undefined>(valueProp);
 
-  return <BaseInput {...props} type='number' value={valueProp?.toString()} onChange={handleChange} />;
+  const handleChange = useCallback((value: string) => {
+    if (INT_REGEX.test(value)) {
+      setInteger(parseInt(value, 10));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (integer != null) {
+      onChange?.(integer);
+    }
+  }, [integer]);
+
+  return <BaseInput {...props} type='number' value={integer?.toString()} onChange={handleChange} />;
 };
 
 export default Integer;

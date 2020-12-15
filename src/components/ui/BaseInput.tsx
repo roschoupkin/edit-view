@@ -45,7 +45,7 @@ const BaseInput: FC<BaseInputProps> = (props) => {
   const { onChange, className, ...inputProps } = props;
   const classes = useStyles(props);
 
-  const handleChange = useCallback((event: ChangeEvent<HTMLInputElement>) => onChange?.(event.target.value), []);
+  const handleChange = useCallback((event: ChangeEvent<HTMLInputElement>) => onChange?.(event.target.value), [onChange]);
 
   return <input {...inputProps} className={cx(classes.root, className)} onChange={handleChange} />;
 };
