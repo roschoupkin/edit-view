@@ -5,19 +5,20 @@ import { createUseStyles } from 'react-jss';
 import { createBoxShadow } from '@styles/theme';
 import { Theme } from '@styles/types';
 
-export interface PaperProp {
+export interface PaperProps {
   width?: number;
 }
 
 const useStyles = createUseStyles((theme: Theme) => ({
   root: {
+    width: ({ width }: PaperProps) => width ?? '100%',
     backgroundColor: theme.colorBgPopup,
     boxShadow: createBoxShadow(theme.boxShadows.normal),
     borderRadius: theme.borderRadius,
   },
 }));
 
-const Paper: FC<PaperProp> = (props) => {
+const Paper: FC<PaperProps> = (props) => {
   const { children, ...paperProps } = props;
   const classes = useStyles(props);
 
