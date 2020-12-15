@@ -30,6 +30,7 @@ const useStyles = createUseStyles({
 const App = () => {
   const classes = useStyles();
   const [area, setArea] = useState('');
+  const [select, setSelect] = useState('');
 
   const buttons = useMemo(
     () =>
@@ -54,7 +55,7 @@ const App = () => {
       <div>String multiline:</div>
       <StringMultiline value={area} onChange={setArea} />
       <div>Select:</div>
-      <Select />
+      <Select options={BUTTON_COLORS as string[]} value={select} onChange={setSelect} />
     </div>
   );
 };

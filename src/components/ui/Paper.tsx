@@ -15,6 +15,7 @@ const useStyles = createUseStyles((theme: Theme) => ({
     backgroundColor: theme.colorBgPopup,
     boxShadow: createBoxShadow(theme.boxShadows.normal),
     borderRadius: theme.borderRadius,
+    overflow: 'hidden',
   },
 }));
 

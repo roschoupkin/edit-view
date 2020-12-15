@@ -15,11 +15,13 @@ export interface DropdownProps extends OverlayProps {
 const useStyles = createUseStyles({
   root: {
     position: 'relative',
+    width: ({ width }: DropdownProps) => width ?? '100%',
   },
 });
 
-const Dropdown: FC<DropdownProps> = ({ children, overlay, open, onClickInside, onClickOutside, ...overlayProps }) => {
-  const classes = useStyles();
+const Dropdown: FC<DropdownProps> = (props) => {
+  const { children, overlay, open, onClickInside, onClickOutside, ...overlayProps } = props;
+  const classes = useStyles(props);
 
   const elementRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);

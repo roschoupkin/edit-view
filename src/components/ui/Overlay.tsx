@@ -17,18 +17,16 @@ export type Placement =
   | 'bottom'
   | 'bottomRight';
 
-interface OverlayStylesProp {
-  withArrow: boolean;
-  offset: number;
-}
-
-export interface OverlayProps extends Partial<OverlayStylesProp> {
+export interface OverlayProps {
   placement?: Placement;
+  width?: number;
+  withArrow?: boolean;
+  offset?: number;
   open?: boolean;
 }
 
 const useStyles = createUseStyles((theme: Theme) => {
-  const renderOffset = ({ offset }: OverlayStylesProp) => `calc(100% + ${offset}px)`;
+  const renderOffset = ({ offset }: OverlayProps) => `calc(100% + ${offset ?? 0}px)`;
   const arrowCommonStyles = {
     top: {
       bottom: -8,
@@ -60,6 +58,7 @@ const useStyles = createUseStyles((theme: Theme) => {
     root: {
       'position': 'absolute',
       'display': 'block',
+      'width': ({ width }: OverlayProps) => width ?? '100%',
       'borderRadius': 2,
       'backgroundColor': theme.colorBg,
       'zIndex': 1,
@@ -67,7 +66,7 @@ const useStyles = createUseStyles((theme: Theme) => {
       '&::after': {
         content: '""',
         position: 'absolute',
-        display: ({ withArrow }: OverlayStylesProp) => (withArrow ? 'block' : 'none'),
+        display: ({ withArrow }: OverlayProps) => (withArrow ? 'block' : 'none'),
         borderWidth: 8,
         borderStyle: 'solid',
         borderColor: 'transparent',
@@ -174,8 +173,9 @@ const useStyles = createUseStyles((theme: Theme) => {
   };
 });
 
-const Overlay: FC<OverlayProps> = ({ placement = 'bottom', offset = 0, children, withArrow, open }) => {
-  const classes = useStyles({ offset, withArrow });
+const Overlay: FC<OverlayProps> = (props) => {
+  const { placement = 'bottom', children, open } = props;
+  const classes = useStyles(props);
   if (!open) {
     return null;
   }

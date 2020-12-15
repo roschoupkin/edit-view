@@ -64,6 +64,7 @@ export interface Theme {
   colorBgPopup: Property.Color;
   colorBgSecondary: Property.Color;
   borderRadius: number;
+  offset: number;
   controls: ThemeControls;
   fonts: ThemeFonts;
   colors: ThemeColors;

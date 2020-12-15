@@ -22,6 +22,7 @@ export const baseTheme: Theme = {
   colorBgPopup: '#FFFFFF',
   colorBgSecondary: '#F0F0F0',
   borderRadius: 12,
+  offset: 4,
   boxShadows: {
     normal: {
       x: 0,
