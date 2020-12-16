@@ -1,11 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { createUseStyles } from 'react-jss';
 
-import { Button, ButtonProps, Float, Integer, Select, String, StringMultiline } from '@ui/controls';
-
-const BUTTON_MODES = ['contained', 'outlined', 'text'];
-const BUTTON_COLORS = ['primary', 'secondary', 'error', 'warning'];
+import { createUseSchema, Editor } from './editor';
 
 const useStyles = createUseStyles({
   root: {
@@ -16,29 +13,39 @@ const useStyles = createUseStyles({
   },
 });
 
+const useSchema = createUseSchema({
+  string: {
+    view: 'string',
+  },
+  stringMultiline: {
+    view: 'string:multiline',
+  },
+  integer: {
+    view: 'integer',
+  },
+  float: {
+    view: 'float',
+  },
+  select: {
+    view: 'select',
+  },
+});
+
 const App = () => {
   const classes = useStyles();
-  const [area, setArea] = useState('');
-  const [mode, setMode] = useState<string | undefined>(undefined);
-  const [color, setColor] = useState<string | undefined>(undefined);
+  const view = useSchema();
 
   return (
     <div className={classes.root}>
-      <div>Inputs:</div>
-      <String placeholder='Строка' />
-      <Float placeholder='Дрбные числа' />
-      <Integer placeholder='Целые числа' />
-      <div>Select:</div>
-      <Select options={BUTTON_MODES} placeholder='Вариант отображения кнопки' value={mode} onChange={setMode} />
-      <Select placement='top' options={BUTTON_COLORS} placeholder='Цвет отображения кнопки' value={color} onChange={setColor} />
-      <div>Buttons:</div>
-      <div>
-        <Button color={color as ButtonProps['color']} mode={mode as ButtonProps['mode']}>
-          Button test
-        </Button>
-      </div>
-      <div>String multiline:</div>
-      <StringMultiline value={area} placeholder='Ввод длинного текста' onChange={setArea} />
+      <Editor>
+        <div>Inputs:</div>
+        {view.string()}
+        {view.stringMultiline()}
+        {view.integer()}
+        {view.float()}
+        <div>Select:</div>
+        {view.select()}
+      </Editor>
     </div>
   );
 };

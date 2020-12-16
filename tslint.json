@@ -9,6 +9,7 @@
     "member-access": [true, "no-public"],
     "no-implicit-dependencies": false,
     "no-submodule-imports": false,
+    "no-object-literal-type-assertion": false,
     "ordered-imports": [
       true,
       {

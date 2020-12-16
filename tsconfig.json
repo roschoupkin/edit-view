@@ -27,7 +27,8 @@
     "paths": {
       "@ui/*": ["src/components/ui/*"],
       "@styles/*": ["src/styles/*"],
-      "@utils/*": ["src/utils/*"]
+      "@utils/*": ["src/utils/*"],
+      "@editor/*": ["src/components/editor/*"]
     }
   },
   "include": [
