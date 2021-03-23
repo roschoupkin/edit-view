@@ -12,7 +12,7 @@ interface EditorProps {
 
 export const createUseSchema = <Name extends string = string>(schema: Schema<Name>) => () =>
   Object.entries(schema).reduce((view, [name, property]) => {
-    const Editor = getEditor(property);
+    const Editor = getEditor(property.view);
     return { ...view, [name]: () => <Editor /> };
   }, {} as ViewModel<Name>);
 
