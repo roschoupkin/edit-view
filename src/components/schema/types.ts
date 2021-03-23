@@ -1,6 +1,11 @@
 import { FloatProps, IntegerProps, Option, SelectProps, StringMultilineProps, StringProps } from '@ui/controls';
 import { ReactNode } from 'react';
 
+export interface SchemaContextType<T = Record<string, unknown>> {
+  value: T;
+  onChange(patch: Partial<T>): void;
+}
+
 export type View = () => ReactNode;
 
 export type SchemaView = 'integer' | 'float' | 'string' | 'string:multiline' | 'select';

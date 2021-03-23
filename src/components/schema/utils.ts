@@ -1,5 +1,6 @@
 import { Float, Integer, Select, String, StringMultiline } from '@ui/controls';
-import { createElement, useState } from 'react';
+import { createElement, FunctionComponent } from 'react';
+import { useSchemaContext } from './Schema';
 
 import { FloatSchema, IntegerSchema, Schema, SchemaProperty, SelectSchema, StringMultilineSchema, StringSchema, View } from './types';
 
@@ -24,28 +25,30 @@ const isSelect = (property: SchemaProperty): property is SelectSchema => {
 };
 
 export const createUseSchema = <P = unknown, K extends string = string>(schema: Record<K, Schema>) => (props?: P) => {
-  const [value, setValue] = useState(Object.keys(schema).reduce((acc, key) => ({ [key]: undefined }), {}));
-
-  const handleChange = (key: K) => <T = unknown>(patch: T) => {
-    setValue({ ...value, [key]: patch });
+  const createComponent = <P extends {}>(key: K, component: FunctionComponent<P>, props?: P) => () => {
+    const handleChange = (key: K) => <T = unknown>(patch: T) => {
+      const { onChange } = useSchemaContext();
+      onChange({ [key]: patch });
+    };
+    return createElement(component, { ...props, onChange: handleChange(key) } as any, null); // TODO: Fix types
   };
 
   const createView = <Key extends K>(key: Key) => {
     const property = schema[key];
     if (isInteger(property)) {
-      return () => createElement(Integer, { ...property, onChange: handleChange(key) }, null);
+      return createComponent(key, Integer, property);
     }
     if (isFloat(property)) {
-      return () => createElement(Float, { ...property, onChange: handleChange(key) }, null);
+      return createComponent(key, Float, property);
     }
     if (isString(property)) {
-      return () => createElement(String, { ...property, onChange: handleChange(key) }, null);
+      return createComponent(key, String, property);
     }
     if (isStringMultiline(property)) {
-      return () => createElement(StringMultiline, { ...property, onChange: handleChange(key) }, null);
+      return createComponent(key, StringMultiline, property);
     }
     if (isSelect(property)) {
-      return () => createElement(Select, { ...property, onChange: handleChange(key) }, null);
+      return createComponent(key, Select, property);
     }
     return () => null;
   };

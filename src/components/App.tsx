@@ -13,6 +13,14 @@ const useStyles = createUseStyles({
   },
 });
 
+const initial = {
+  string: 'string',
+  stringMultiline: 'string:multiline',
+  integer: 1,
+  float: 1.1,
+  select: 'select',
+};
+
 const useSchema = createUseSchema({
   string: {
     view: 'string',
@@ -37,7 +45,7 @@ const App = () => {
 
   return (
     <div className={classes.root}>
-      <Schema>
+      <Schema value={initial} onChange={console.log}>
         <div>Inputs:</div>
         {view.string()}
         {view.stringMultiline()}
