@@ -39,7 +39,7 @@ const OptionsItem: FC<OptionsItemProps> = ({ value, label, selected, onClick }) 
   const handleClick = useCallback(() => onClick?.(value), [value, onClick]);
 
   return (
-    <button type='button' className={cx(classes.root, value === selected && classes.selected)} onClick={handleClick}>
+    <button type="button" className={cx(classes.root, value === selected && classes.selected)} onClick={handleClick}>
       {label}
     </button>
   );

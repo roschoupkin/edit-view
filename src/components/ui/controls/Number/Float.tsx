@@ -29,7 +29,7 @@ const Float: FC<FloatProps> = ({ type, fraction, value: valueProp, onChange, ...
     }
   }, [float]);
 
-  return <BaseInput {...props} type='number' value={valueProp?.toString()} onChange={handleChange} />;
+  return <BaseInput {...props} type="number" value={valueProp?.toString()} onChange={handleChange} />;
 };
 
 export default Float;

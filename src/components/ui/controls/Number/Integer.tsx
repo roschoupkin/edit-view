@@ -25,7 +25,7 @@ const Integer: FC<IntegerProps> = ({ type, value: valueProp, onChange, ...props 
     }
   }, [integer]);
 
-  return <BaseInput {...props} type='number' value={integer?.toString()} onChange={handleChange} />;
+  return <BaseInput {...props} type="number" value={integer?.toString()} onChange={handleChange} />;
 };
 
 export default Integer;
