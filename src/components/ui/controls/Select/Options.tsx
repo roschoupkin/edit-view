@@ -7,7 +7,7 @@ import { prepareOption } from './utils';
 
 export interface OptionsProps extends Omit<OptionsItemProps, 'value' | 'label'> {
   width?: number;
-  options?: (string | Option)[];
+  options?: Array<string | Option>;
 }
 
 const Options: FC<OptionsProps> = ({ options, width, ...optionItemProps }) => {

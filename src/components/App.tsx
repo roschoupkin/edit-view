@@ -2,7 +2,7 @@ import React from 'react';
 
 import { createUseStyles } from 'react-jss';
 
-import { createUseSchema, Editor } from './editor';
+import Schema, { createUseSchema } from './schema';
 
 const useStyles = createUseStyles({
   root: {
@@ -32,12 +32,12 @@ const useSchema = createUseSchema({
 });
 
 const App = () => {
-  const classes = useStyles();
   const view = useSchema();
+  const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <Editor>
+      <Schema>
         <div>Inputs:</div>
         {view.string()}
         {view.stringMultiline()}
@@ -45,7 +45,7 @@ const App = () => {
         {view.float()}
         <div>Select:</div>
         {view.select()}
-      </Editor>
+      </Schema>
     </div>
   );
 };

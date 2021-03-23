@@ -1,4 +1,7 @@
 import { FloatProps, IntegerProps, Option, SelectProps, StringMultilineProps, StringProps } from '@ui/controls';
+import { ReactNode } from 'react';
+
+export type View = () => ReactNode;
 
 export type SchemaView = 'integer' | 'float' | 'string' | 'string:multiline' | 'select';
 
@@ -31,11 +34,8 @@ export interface StringMultilineSchema extends SchemaProperty {
 
 export interface SelectSchema extends SchemaProperty {
   view: 'select';
-  options?: string | Option[];
+  options?: Array<string | Option>;
   props?: SelectProps;
 }
 
-export type Schema<Name extends string = string> = Record<
-  Name,
-  IntegerSchema | FloatSchema | StringSchema | StringMultilineSchema | SelectSchema
->;
+export type Schema = IntegerSchema | FloatSchema | StringSchema | StringMultilineSchema | SelectSchema;
