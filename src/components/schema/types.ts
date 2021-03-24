@@ -1,12 +1,14 @@
-import { FloatProps, IntegerProps, Option, SelectProps, StringMultilineProps, StringProps } from '@ui/../controls';
+import { FloatProps, IntegerProps, Option, SelectProps, StringMultilineProps, StringProps } from '@controls';
 import { ReactNode } from 'react';
 
-export interface SchemaContextType<T = Record<string, unknown>> {
+export interface SchemaContextType<T = unknown> {
   value: T;
   onChange(patch: Partial<T>): void;
 }
 
-export type View = () => ReactNode;
+export type View<K extends string> = {
+  [P in K]: () => ReactNode;
+};
 
 export type SchemaView = 'integer' | 'float' | 'string' | 'string:multiline' | 'select';
 
@@ -43,4 +45,11 @@ export interface SelectSchema extends SchemaProperty {
   props?: SelectProps;
 }
 
-export type Schema = IntegerSchema | FloatSchema | StringSchema | StringMultilineSchema | SelectSchema;
+export type SchemaProps<T extends Omit<SchemaProperty, 'view'>, P = unknown> = Pick<SchemaProperty, 'view'> &
+  {
+    [K in keyof T]: T[K] | ((props: P) => T[K]);
+  };
+
+export type Schemas = IntegerSchema | FloatSchema | StringSchema | StringMultilineSchema | SelectSchema;
+
+export type Schema<P = unknown> = SchemaProps<Schemas, P>;

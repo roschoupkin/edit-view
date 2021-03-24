@@ -3,8 +3,8 @@ import React, { useCallback, FC, ReactNode } from 'react';
 import cx from 'classnames';
 import { createUseStyles } from 'react-jss';
 
-import { tonerDisabled } from '../../../styles/theme';
-import { Theme } from '../../../styles/types';
+import { tonerDisabled } from '@styles/theme';
+import { Theme } from '@styles/types';
 
 export interface Option {
   label: ReactNode;

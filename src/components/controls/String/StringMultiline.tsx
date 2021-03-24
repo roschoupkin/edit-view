@@ -1,10 +1,10 @@
-import { ControlProps } from '@controls/types';
+import { ControlProps } from '@controls';
 import React, { useCallback, useLayoutEffect, useRef, ChangeEvent, FC, TextareaHTMLAttributes } from 'react';
 
 import cx from 'classnames';
 import { createUseStyles } from 'react-jss';
 
-import { Theme } from '../../../styles/types';
+import { Theme } from '@styles/types';
 
 export type HtmlTextAreaProps = Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'value' | 'onChange'>;
 

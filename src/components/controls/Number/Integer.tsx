@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState, FC } from 'react';
 
-import BaseInput, { BaseInputProps } from '../../ui/BaseInput';
+import BaseInput, { BaseInputProps } from '@ui/BaseInput';
 
 const INT_REGEX = /^[+-]?\d+$/;
 

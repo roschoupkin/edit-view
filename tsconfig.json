@@ -27,8 +27,7 @@
     ],
     "paths": {
       "@ui/*": ["src/components/ui/*"],
-      "@controls/*": ["src/components/controls/*"],
-      "@views/*": ["src/components/views/*"],
+      "@controls": ["src/components/controls/index.ts"],
       "@decorators/*": ["src/decorators/*"],
       "@styles/*": ["src/styles/*"],
       "@utils/*": ["src/utils/*"]

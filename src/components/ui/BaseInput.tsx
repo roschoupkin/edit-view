@@ -1,4 +1,4 @@
-import { ControlProps } from '@controls/types';
+import { ControlProps } from '@controls';
 import React, { useCallback, ChangeEvent, FC, InputHTMLAttributes, ReactText } from 'react';
 
 import cx from 'classnames';

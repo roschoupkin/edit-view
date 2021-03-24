@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState, FC } from 'react';
 
-import BaseInput, { BaseInputProps } from '../../ui/BaseInput';
+import BaseInput, { BaseInputProps } from '@ui/BaseInput';
 
 export interface FloatProps extends BaseInputProps<number> {
   type?: 'number';

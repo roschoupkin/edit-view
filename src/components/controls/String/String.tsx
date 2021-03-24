@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import BaseInput, { BaseInputProps } from '../../ui/BaseInput';
+import BaseInput, { BaseInputProps } from '@ui/BaseInput';
 
 export interface StringProps extends BaseInputProps<string> {
   type?: 'number' | 'text' | 'password' | 'email' | 'tel';

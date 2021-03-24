@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { createUseStyles } from 'react-jss';
 
@@ -35,6 +35,11 @@ const useSchema = createUseSchema({
     view: 'float',
   },
   select: {
+    options: ['test', 'select', 'another'],
+    view: 'select',
+  },
+  select2: {
+    options: ['test', 'select', 'another'],
     view: 'select',
   },
 });
@@ -42,10 +47,11 @@ const useSchema = createUseSchema({
 const App = () => {
   const view = useSchema();
   const classes = useStyles();
+  const [value, setValue] = useState(initial);
 
   return (
     <div className={classes.root}>
-      <Schema value={initial} onChange={console.log}>
+      <Schema value={value} onChange={setValue}>
         <div>Inputs:</div>
         {view.string()}
         {view.stringMultiline()}
@@ -53,6 +59,7 @@ const App = () => {
         {view.float()}
         <div>Select:</div>
         {view.select()}
+        {view.select2()}
       </Schema>
     </div>
   );

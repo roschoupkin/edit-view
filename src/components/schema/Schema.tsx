@@ -1,36 +1,37 @@
-import React, { createContext, FC, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import React, { createContext, ReactNode, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { isEqual } from 'lodash';
 import { SchemaContextType } from './types';
 
-interface SchemaProps<T = Record<string, unknown>> {
+interface SchemaProps<T extends object> {
   value: T;
+  children?: ReactNode;
   onChange?(value: T): void;
 }
 
 const SchemaContext = createContext<SchemaContextType | null>(null);
 
-export const useSchemaContext = (): SchemaContextType => {
+export function useSchemaContext<T extends object>() {
   const context = useContext(SchemaContext);
 
   if (!context) {
     throw Error('You can only use useSchemaContext inside <Schema />');
   }
 
-  return context;
-};
+  return context as SchemaContextType<T>;
+}
 
-const Schema: FC<SchemaProps> = ({ children, value: initialValue, onChange }) => {
-  const prevValue = useRef(initialValue);
-  const [value, setValue] = useState(initialValue);
+export default function Schema<T extends object>({ children, value: initialValue, onChange }: SchemaProps<T>) {
+  const prevValue = useRef<T>(initialValue);
+  const [value, setValue] = useState<T>(initialValue);
 
   const handleChange = useCallback(
-    (patch: Partial<Record<string, unknown>>) => {
+    (patch: Partial<T>) => {
       setValue({ ...value, ...patch });
     },
     [value]
   );
 
-  const context = useMemo(
+  const context: SchemaContextType<T> = useMemo(
     () => ({
       value,
       onChange: handleChange,
@@ -48,6 +49,4 @@ const Schema: FC<SchemaProps> = ({ children, value: initialValue, onChange }) =>
   }, [value]);
 
   return <SchemaContext.Provider value={context}>{children}</SchemaContext.Provider>;
-};
-
-export default Schema;
+}

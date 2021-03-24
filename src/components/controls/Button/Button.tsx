@@ -3,7 +3,7 @@ import React, { ButtonHTMLAttributes, FC, ReactText } from 'react';
 import cx from 'classnames';
 import { createUseStyles } from 'react-jss';
 
-import { Theme, ThemeColor } from '../../../styles/types';
+import { Theme, ThemeColor } from '@styles/types';
 
 type BaseButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
 
