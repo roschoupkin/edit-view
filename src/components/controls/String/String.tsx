@@ -1,11 +1,9 @@
 import React, { FC } from 'react';
 
-import BaseInput, { HtmlInputProps } from '../../ui/BaseInput';
+import BaseInput, { BaseInputProps } from '../../ui/BaseInput';
 
-export interface StringProps extends HtmlInputProps {
+export interface StringProps extends BaseInputProps<string> {
   type?: 'number' | 'text' | 'password' | 'email' | 'tel';
-  value?: string;
-  onChange?(value: string): void;
 }
 
 const String: FC<StringProps> = ({ type, onChange, ...props }) => <BaseInput {...props} type={type} onChange={onChange} />;

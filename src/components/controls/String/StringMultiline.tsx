@@ -1,4 +1,5 @@
-import React, { useCallback, useLayoutEffect, useRef, ChangeEvent, FC, ReactText, TextareaHTMLAttributes } from 'react';
+import { ControlProps } from '@controls/types';
+import React, { useCallback, useLayoutEffect, useRef, ChangeEvent, FC, TextareaHTMLAttributes } from 'react';
 
 import cx from 'classnames';
 import { createUseStyles } from 'react-jss';
@@ -7,11 +8,7 @@ import { Theme } from '../../../styles/types';
 
 export type HtmlTextAreaProps = Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'value' | 'onChange'>;
 
-export interface StringMultilineProps extends HtmlTextAreaProps {
-  value?: string;
-  onChange?(value: string): void;
-  width?: ReactText;
-}
+export type StringMultilineProps = HtmlTextAreaProps & ControlProps<string>;
 
 const useStyles = createUseStyles((theme: Theme) => ({
   root: {

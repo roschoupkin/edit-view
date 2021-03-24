@@ -5,6 +5,7 @@
     "jsx": "react",
     "declaration": false,
     "importHelpers": true,
+    "experimentalDecorators": true,
     "strict": true,
     "sourceMap": true,
     "noUnusedLocals": true,
@@ -28,6 +29,7 @@
       "@ui/*": ["src/components/ui/*"],
       "@controls/*": ["src/components/controls/*"],
       "@views/*": ["src/components/views/*"],
+      "@decorators/*": ["src/decorators/*"],
       "@styles/*": ["src/styles/*"],
       "@utils/*": ["src/utils/*"]
     }

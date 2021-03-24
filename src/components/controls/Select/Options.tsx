@@ -1,4 +1,4 @@
-import React, { useMemo, FC } from 'react';
+import React, { useMemo, FC, ReactText } from 'react';
 
 import { Option, OptionsItem, OptionsItemProps } from '../index';
 import Paper from '../../ui/Paper';
@@ -6,7 +6,7 @@ import Paper from '../../ui/Paper';
 import { prepareOption } from './utils';
 
 export interface OptionsProps extends Omit<OptionsItemProps, 'value' | 'label'> {
-  width?: number;
+  width?: ReactText;
   options?: Array<string | Option>;
 }
 

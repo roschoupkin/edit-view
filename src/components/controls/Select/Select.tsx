@@ -10,11 +10,9 @@ import { Placement } from '../../ui/Overlay';
 
 import { ControlProps } from '../types';
 
-export interface SelectProps extends ControlProps, OptionsProps {
+export interface SelectProps extends ControlProps<string>, OptionsProps {
   placement?: Placement;
   placeholder?: string;
-  value?: string;
-  onChange?(value: string): void;
 }
 
 const useStyles = createUseStyles({

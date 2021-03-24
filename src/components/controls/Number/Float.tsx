@@ -1,12 +1,10 @@
 import React, { useCallback, useEffect, useMemo, useState, FC } from 'react';
 
-import BaseInput, { HtmlInputProps } from '../../ui/BaseInput';
+import BaseInput, { BaseInputProps } from '../../ui/BaseInput';
 
-export interface FloatProps extends HtmlInputProps {
+export interface FloatProps extends BaseInputProps<number> {
   type?: 'number';
-  value?: number;
   fraction?: number;
-  onChange?(value: number): void;
 }
 
 const Float: FC<FloatProps> = ({ type, fraction, value: valueProp, onChange, ...props }) => {

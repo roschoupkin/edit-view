@@ -1,4 +1,5 @@
-import React, { createContext, FC, useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import React, { createContext, FC, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { isEqual } from 'lodash';
 import { SchemaContextType } from './types';
 
 interface SchemaProps<T = Record<string, unknown>> {
@@ -19,6 +20,7 @@ export const useSchemaContext = (): SchemaContextType => {
 };
 
 const Schema: FC<SchemaProps> = ({ children, value: initialValue, onChange }) => {
+  const prevValue = useRef(initialValue);
   const [value, setValue] = useState(initialValue);
 
   const handleChange = useCallback(
@@ -37,7 +39,12 @@ const Schema: FC<SchemaProps> = ({ children, value: initialValue, onChange }) =>
   );
 
   useEffect(() => {
-    onChange?.(value);
+    if (!isEqual(prevValue.current, value)) {
+      onChange?.(value);
+    }
+    return () => {
+      prevValue.current = value;
+    };
   }, [value]);
 
   return <SchemaContext.Provider value={context}>{children}</SchemaContext.Provider>;

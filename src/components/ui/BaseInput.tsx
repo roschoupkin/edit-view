@@ -1,4 +1,5 @@
-import React, { useCallback, ChangeEvent, FC, InputHTMLAttributes } from 'react';
+import { ControlProps } from '@controls/types';
+import React, { useCallback, ChangeEvent, FC, InputHTMLAttributes, ReactText } from 'react';
 
 import cx from 'classnames';
 import { createUseStyles } from 'react-jss';
@@ -7,10 +8,7 @@ import { Theme } from '@styles/types';
 
 export type HtmlInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange'>;
 
-export interface BaseInputProps extends HtmlInputProps {
-  value?: string;
-  onChange?(value: string): void;
-}
+export type BaseInputProps<V = ReactText> = HtmlInputProps & ControlProps<V>;
 
 const useStyles = createUseStyles((theme: Theme) => ({
   root: {

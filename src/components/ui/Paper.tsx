@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, ReactText } from 'react';
 
 import { createUseStyles } from 'react-jss';
 
@@ -6,7 +6,7 @@ import { createBoxShadow } from '@styles/theme';
 import { Theme } from '@styles/types';
 
 export interface PaperProps {
-  width?: number;
+  width?: ReactText;
 }
 
 const useStyles = createUseStyles((theme: Theme) => ({

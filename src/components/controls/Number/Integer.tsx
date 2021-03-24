@@ -1,13 +1,11 @@
 import React, { useCallback, useEffect, useState, FC } from 'react';
 
-import BaseInput, { HtmlInputProps } from '../../ui/BaseInput';
+import BaseInput, { BaseInputProps } from '../../ui/BaseInput';
 
 const INT_REGEX = /^[+-]?\d+$/;
 
-export interface IntegerProps extends HtmlInputProps {
+export interface IntegerProps extends BaseInputProps<number> {
   type?: 'number';
-  value?: number;
-  onChange?(value: number): void;
 }
 
 const Integer: FC<IntegerProps> = ({ type, value: valueProp, onChange, ...props }) => {
