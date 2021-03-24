@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState, FC } from 'react';
 
-import BaseInput, { HtmlInputProps } from '../../BaseInput';
+import BaseInput, { HtmlInputProps } from '../../ui/BaseInput';
 
 export interface FloatProps extends HtmlInputProps {
   type?: 'number';

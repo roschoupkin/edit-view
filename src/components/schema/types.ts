@@ -1,4 +1,4 @@
-import { FloatProps, IntegerProps, Option, SelectProps, StringMultilineProps, StringProps } from '@ui/controls';
+import { FloatProps, IntegerProps, Option, SelectProps, StringMultilineProps, StringProps } from '@ui/../controls';
 import { ReactNode } from 'react';
 
 export interface SchemaContextType<T = Record<string, unknown>> {

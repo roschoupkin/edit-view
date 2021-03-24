@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import BaseInput, { HtmlInputProps } from '@ui/BaseInput';
+import BaseInput, { HtmlInputProps } from '../../ui/BaseInput';
 
 export interface StringProps extends HtmlInputProps {
   type?: 'number' | 'text' | 'password' | 'email' | 'tel';

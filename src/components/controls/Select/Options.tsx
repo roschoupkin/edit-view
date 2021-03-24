@@ -1,7 +1,7 @@
 import React, { useMemo, FC } from 'react';
 
-import { Option, OptionsItem, OptionsItemProps } from '@ui/controls';
-import Paper from '@ui/Paper';
+import { Option, OptionsItem, OptionsItemProps } from '../index';
+import Paper from '../../ui/Paper';
 
 import { prepareOption } from './utils';
 

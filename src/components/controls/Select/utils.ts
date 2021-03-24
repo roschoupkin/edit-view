@@ -1,4 +1,4 @@
-import { Option } from '@ui/controls';
+import { Option } from '../index';
 
 export const prepareOption = (option: string | Option) =>
   typeof option === 'object' ? option : { value: option, label: option.toString() };

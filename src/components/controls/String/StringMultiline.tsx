@@ -3,7 +3,7 @@ import React, { useCallback, useLayoutEffect, useRef, ChangeEvent, FC, ReactText
 import cx from 'classnames';
 import { createUseStyles } from 'react-jss';
 
-import { Theme } from '@styles/types';
+import { Theme } from '../../../styles/types';
 
 export type HtmlTextAreaProps = Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'value' | 'onChange'>;
 

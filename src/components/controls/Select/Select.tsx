@@ -2,11 +2,11 @@ import React, { useCallback, useMemo, useState, FC } from 'react';
 
 import { createUseStyles, useTheme } from 'react-jss';
 
-import { Theme } from '@styles/types';
-import { Options, OptionsProps, String } from '@ui/controls';
-import { prepareOptionSet } from '@ui/controls/Select/utils';
-import Dropdown from '@ui/Dropdown';
-import { Placement } from '@ui/Overlay';
+import { Theme } from '../../../styles/types';
+import { Options, OptionsProps, String } from '../index';
+import { prepareOptionSet } from './utils';
+import Dropdown from '../../ui/Dropdown';
+import { Placement } from '../../ui/Overlay';
 
 import { ControlProps } from '../types';
 

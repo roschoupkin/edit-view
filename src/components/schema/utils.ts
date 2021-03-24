@@ -1,4 +1,4 @@
-import { Float, Integer, Select, String, StringMultiline } from '@ui/controls';
+import { Float, Integer, Select, String, StringMultiline } from '@ui/../controls';
 import { createElement, FunctionComponent } from 'react';
 import { useSchemaContext } from './Schema';
 
@@ -24,6 +24,7 @@ const isSelect = (property: SchemaProperty): property is SelectSchema => {
   return property.view === 'select';
 };
 
+// TODO: Добавить компоненты с хуком, где бы добавились параметры контекста
 export const createUseSchema = <P = unknown, K extends string = string>(schema: Record<K, Schema>) => (props?: P) => {
   const createComponent = <P extends {}>(key: K, component: FunctionComponent<P>, props?: P) => () => {
     const handleChange = (key: K) => <T = unknown>(patch: T) => {
