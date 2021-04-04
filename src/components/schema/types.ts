@@ -45,10 +45,9 @@ export interface SelectSchema extends SchemaProperty {
   props?: SelectProps;
 }
 
-export type SchemaProps<T extends Omit<SchemaProperty, 'view'>, P = unknown> = Pick<SchemaProperty, 'view'> &
-  {
-    [K in keyof T]: T[K] | ((props: P) => T[K]);
-  };
+export type SchemaProps<T extends SchemaProperty, P = unknown> = {
+  [K in keyof T]: T[K] | ((props: P) => T[K]);
+};
 
 export type Schemas = IntegerSchema | FloatSchema | StringSchema | StringMultilineSchema | SelectSchema;
 

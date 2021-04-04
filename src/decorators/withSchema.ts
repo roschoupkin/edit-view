@@ -6,11 +6,11 @@ function hasKey<K extends string>(obj: object, key: K): obj is Record<K, unknown
   return obj.hasOwnProperty(key);
 }
 
-export function withSchema<T extends ControlProps>(key: string) {
+export function withSchema<P extends ControlProps>(key: string) {
   return useCallback(
-    (Component: FunctionComponent<T>) => {
+    (Component: FunctionComponent<P>) => {
       return useCallback(
-        (props: T) => {
+        (props: P) => {
           const { value: contextValue, onChange } = useSchemaContext();
           const value = hasKey(contextValue, key) ? contextValue[key] : undefined;
 

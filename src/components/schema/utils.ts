@@ -1,11 +1,11 @@
 import { withSchema } from '@decorators/withSchema';
-import { Float, Integer, Select, String, StringMultiline } from '@controls';
+import { ControlProps, Float, Integer, Select, String, StringMultiline } from '@controls';
 import { createElement, FunctionComponent } from 'react';
 
 import { Schema, View } from './types';
 import { isFloat, isInteger, isSelect, isString, isStringMultiline } from './checkTypes';
 
-const createSchemaComponent = <P = unknown>(key: string, component: FunctionComponent<P>, props: P) => {
+const createSchemaComponent = <P extends ControlProps>(key: string, component: FunctionComponent<P>, props: P) => {
   return (majorProps?: P) => createElement(withSchema<P>(key)(component), { ...props, ...majorProps });
 };
 
@@ -40,5 +40,5 @@ export const createUseSchema = <P = unknown, K extends string = string>(schema: 
     return () => null;
   };
 
-  return Object.keys(schema).reduce((view, key) => ({ ...view, [key]: createView(key) }), {} as View<K>);
+  return Object.keys(schema).reduce<View<K>>((view, key) => ({ ...view, [key]: createView(key) }), {} as View<K>);
 };

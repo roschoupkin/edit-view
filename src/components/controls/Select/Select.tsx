@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState, FC } from 'react';
+import React, { useCallback, useMemo, useState, FC, useEffect } from 'react';
 
 import { createUseStyles, useTheme } from 'react-jss';
 
@@ -30,7 +30,7 @@ const Select: FC<SelectProps> = ({ value: valueProp, width, options, placement, 
   const handleClose = useCallback(() => setOpen(false), []);
 
   const handleSelect = useCallback(
-    (selected) => {
+    (selected: string) => {
       onChange?.(selected);
       handleClose();
     },
@@ -39,6 +39,14 @@ const Select: FC<SelectProps> = ({ value: valueProp, width, options, placement, 
 
   const optionsSet = useMemo(() => (options ?? []).reduce(prepareOptionSet, new Set()), [options]);
   const value = useMemo(() => (valueProp && optionsSet.has(valueProp) ? valueProp : ''), [valueProp, optionsSet]);
+
+  useEffect(() => {
+    if (valueProp != null && valueProp !== '') {
+      if (!optionsSet.has(valueProp)) {
+        onChange?.('');
+      }
+    }
+  }, [optionsSet, valueProp, onChange]);
 
   return (
     <Dropdown

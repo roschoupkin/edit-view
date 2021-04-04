@@ -1,6 +1,8 @@
 import { ReactText } from 'react';
+import { SchemaProperty, SchemaView } from '../schema/types';
 
-export interface ControlProps<V = ReactText> {
+export interface ControlProps<V = ReactText> extends SchemaProperty {
+  view: SchemaView;
   width?: ReactText;
   disabled?: boolean;
   focused?: boolean;
