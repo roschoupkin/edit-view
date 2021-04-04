@@ -6,26 +6,36 @@ import { Schema, View } from './types';
 import { isFloat, isInteger, isSelect, isString, isStringMultiline } from './checkTypes';
 
 const createSchemaComponent = <P = unknown>(key: string, component: FunctionComponent<P>, props: P) => {
-  return () => createElement(withSchema<P>(key)(component), props);
+  return (majorProps?: P) => createElement(withSchema<P>(key)(component), { ...props, ...majorProps });
 };
 
-export const createUseSchema = <P = unknown, K extends string = string>(schema: Record<K, Schema>) => (props?: P) => {
+const applyProps = <P, T extends Schema<P>>(properties: T, props: P): T => {
+  return Object.keys(properties).reduce((applied, key) => {
+    const property = properties[key];
+    if (typeof property === 'function') {
+      return { ...applied, [key]: property(props) };
+    }
+    return applied;
+  }, properties);
+};
+
+export const createUseSchema = <P = unknown, K extends string = string>(schema: Record<K, Schema<P>>) => (props?: P) => {
   const createView = <Key extends K>(key: Key) => {
-    const property = schema[key];
-    if (isInteger(property)) {
-      return createSchemaComponent(key, Integer, property);
+    const properties = schema[key];
+    if (isInteger<P>(properties)) {
+      return createSchemaComponent(key, Integer, applyProps(properties, props));
     }
-    if (isFloat(property)) {
-      return createSchemaComponent(key, Float, property);
+    if (isFloat<P>(properties)) {
+      return createSchemaComponent(key, Float, applyProps(properties, props));
     }
-    if (isString(property)) {
-      return createSchemaComponent(key, String, property);
+    if (isString<P>(properties)) {
+      return createSchemaComponent(key, String, applyProps(properties, props));
     }
-    if (isStringMultiline(property)) {
-      return createSchemaComponent(key, StringMultiline, property);
+    if (isStringMultiline<P>(properties)) {
+      return createSchemaComponent(key, StringMultiline, applyProps(properties, props));
     }
-    if (isSelect(property)) {
-      return createSchemaComponent(key, Select, property);
+    if (isSelect<P>(properties)) {
+      return createSchemaComponent(key, Select, applyProps(properties, props));
     }
     return () => null;
   };

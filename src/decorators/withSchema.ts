@@ -12,19 +12,16 @@ export function withSchema<T extends ControlProps>(key: string) {
       return useCallback(
         (props: T) => {
           const { value: contextValue, onChange } = useSchemaContext();
-          if (hasKey(contextValue, key)) {
-            const value = contextValue[key];
+          const value = hasKey(contextValue, key) ? contextValue[key] : undefined;
 
-            const handleChange = useCallback(
-              (patch: unknown) => {
-                onChange({ [key]: patch });
-              },
-              [value]
-            );
+          const handleChange = useCallback(
+            (patch: unknown) => {
+              onChange({ [key]: patch });
+            },
+            [value, onChange]
+          );
 
-            return createElement(Component, { ...props, key, value, onChange: handleChange });
-          }
-          return null;
+          return createElement(Component, { ...props, key, value, onChange: handleChange });
         },
         [Component]
       );

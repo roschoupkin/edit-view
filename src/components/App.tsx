@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import { createUseStyles } from 'react-jss';
 
@@ -13,7 +13,16 @@ const useStyles = createUseStyles({
   },
 });
 
-const initial = {
+interface Example {
+  string: string;
+  stringMultiline: string;
+  integer: number;
+  float: number;
+  select: string;
+  select2?: string;
+}
+
+const initial: Example = {
   string: 'string',
   stringMultiline: 'string:multiline',
   integer: 1,
@@ -21,7 +30,7 @@ const initial = {
   select: 'select',
 };
 
-const useSchema = createUseSchema({
+const useSchema = createUseSchema<Example>({
   string: {
     view: 'string',
   },
@@ -39,19 +48,16 @@ const useSchema = createUseSchema({
     view: 'select',
   },
   select2: {
-    options: ['test', 'select', 'another'],
+    options: ({ select }) => (select === 'test' ? ['one', 'two', 'three'] : ['test', 'select', 'another']),
     view: 'select',
   },
 });
 
 const App = () => {
-  const view = useSchema();
   const classes = useStyles();
-  const [value, setValue] = useState(initial);
 
-  useEffect(() => {
-    console.log(value);
-  }, [value]);
+  const [value, setValue] = useState(initial);
+  const view = useSchema(value);
 
   return (
     <div className={classes.root}>
