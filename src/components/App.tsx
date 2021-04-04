@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { createUseStyles } from 'react-jss';
 
@@ -48,6 +48,10 @@ const App = () => {
   const view = useSchema();
   const classes = useStyles();
   const [value, setValue] = useState(initial);
+
+  useEffect(() => {
+    console.log(value);
+  }, [value]);
 
   return (
     <div className={classes.root}>
