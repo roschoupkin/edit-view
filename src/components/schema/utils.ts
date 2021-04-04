@@ -6,7 +6,7 @@ import { Schema, View } from './types';
 import { isFloat, isInteger, isSelect, isString, isStringMultiline } from './checkTypes';
 
 const createSchemaComponent = <P extends ControlProps>(key: string, component: FunctionComponent<P>, props: P) => {
-  return (majorProps?: P) => createElement(withSchema<P>(key)(component), { ...props, ...majorProps });
+  return () => createElement(withSchema<P>(key)(component), props);
 };
 
 const applyProps = <P, T extends Schema<P>>(properties: T, props: P): T => {
@@ -19,7 +19,7 @@ const applyProps = <P, T extends Schema<P>>(properties: T, props: P): T => {
   }, properties);
 };
 
-export const createUseSchema = <P = unknown, K extends string = string>(schema: Record<K, Schema<P>>) => (props?: P) => {
+export const createUseSchema = <P, K extends string = string>(schema: Record<K, Schema<P>>) => (props?: P) => {
   const createView = <Key extends K>(key: Key) => {
     const properties = schema[key];
     if (isInteger<P>(properties)) {
@@ -40,5 +40,5 @@ export const createUseSchema = <P = unknown, K extends string = string>(schema: 
     return () => null;
   };
 
-  return Object.keys(schema).reduce<View<K>>((view, key) => ({ ...view, [key]: createView(key) }), {} as View<K>);
+  return Object.keys(schema).reduce((view, key) => ({ ...view, [key]: createView(key) }), {} as View<K>);
 };

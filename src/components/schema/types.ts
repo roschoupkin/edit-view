@@ -1,4 +1,5 @@
 import { FloatProps, IntegerProps, Option, SelectProps, StringMultilineProps, StringProps } from '@controls';
+import { Placement } from '@ui/Overlay';
 import { ReactNode } from 'react';
 
 export interface SchemaContextType<T = unknown> {
@@ -6,14 +7,11 @@ export interface SchemaContextType<T = unknown> {
   onChange(patch: Partial<T>): void;
 }
 
-export type View<K extends string> = {
-  [P in K]: () => ReactNode;
-};
-
 export type SchemaView = 'integer' | 'float' | 'string' | 'string:multiline' | 'select';
 
 export interface SchemaProperty {
   view: SchemaView;
+  required?: boolean;
   placeholder?: string;
   disabled?: boolean;
   props?: unknown;
@@ -41,6 +39,7 @@ export interface StringMultilineSchema extends SchemaProperty {
 
 export interface SelectSchema extends SchemaProperty {
   view: 'select';
+  placement?: Placement;
   options?: Array<string | Option>;
   props?: SelectProps;
 }
@@ -52,3 +51,7 @@ export type SchemaProps<T extends SchemaProperty, P = unknown> = {
 export type Schemas = IntegerSchema | FloatSchema | StringSchema | StringMultilineSchema | SelectSchema;
 
 export type Schema<P = unknown> = SchemaProps<Schemas, P>;
+
+export type View<Keys extends string> = {
+  [K in Keys]: () => ReactNode;
+};
