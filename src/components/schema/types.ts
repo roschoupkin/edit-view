@@ -11,7 +11,6 @@ export type SchemaView = 'integer' | 'float' | 'string' | 'string:multiline' | '
 
 export interface SchemaProperty {
   view: SchemaView;
-  required?: boolean;
   placeholder?: string;
   disabled?: boolean;
   props?: unknown;

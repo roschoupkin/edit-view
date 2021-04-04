@@ -48,6 +48,7 @@ const useSchema = createUseSchema<Example>({
     view: 'select',
   },
   select2: {
+    placeholder: 'Test value',
     disabled: ({ select }) => select === 'another',
     options: ({ select }) => (select === 'test' ? ['one', 'two', 'three'] : ['test', 'select', 'another']),
     view: 'select',
